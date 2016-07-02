@@ -1,5 +1,5 @@
 {
-  "name": "cnBruceHong/laradock",
+  "name": "cn-bruce-hong/laradock",
   "description": "Fork from laradock/laradock.Like Laravel Homestead but for Docker instead of Vagrant. ",
   "minimum-stability": "stable",
   "license": "proprietary",
