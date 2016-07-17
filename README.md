@@ -7,6 +7,7 @@ LaraDock helps you run your **Laravel** App on **Docker** real quick.
 <br>
 It's like Laravel Homestead but for Docker instead of Vagrant.
 
+>With LaraDock, use Docker first and learn about it later.
 
 ![](http://s18.postimg.org/fhykchl09/new_laradock_cover.png)
 
@@ -49,6 +50,7 @@ It's like Laravel Homestead but for Docker instead of Vagrant.
 		- [Run a Docker Virtual Host](#Run-Docker-Virtual-Host)
 		- [Find your Docker IP Address](#Find-Docker-IP-Address)
 		- [Use custom Domain](#Use-custom-Domain)
+		- [Install Prestissimo](#Install-Prestissimo)
 		- [Debugging](#debugging)
 - [Help & Questions](#Help)
 
@@ -98,7 +100,7 @@ docker-compose up  nginx mysql redis
 - Memcached
 - Beanstalkd
 - Beanstalkd Console
-- Workspace (contains: Composer, PHP7-CLI, Laravel Installer, Git, Node, Gulp, Bower, SQLite,  Vim, Nano and cURL)
+- Workspace (contains: Composer, PHP7-CLI, Laravel Installer, Git, Node, Gulp, Bower, SQLite,  Vim, Nano, cURL and much more)
 - Data *(Databases Data Container)*
 - Application *(Application Code Container)*
 
@@ -112,7 +114,7 @@ docker-compose up  nginx mysql redis
 <a name="what-is-docker"></a>
 ### What is Docker?
 
-[Docker](https://www.docker.com)  is an open-source project that automates the deployment of applications inside software containers, by providing an additional layer of abstraction and automation of [operating-system-level virtualization](https://en.wikipedia.org/wiki/Operating-system-level_virtualization) on Linux, Mac OS and Windows.
+[Docker](https://www.docker.com) is an open-source project that automates the deployment of applications inside software containers, by providing an additional layer of abstraction and automation of [operating-system-level virtualization](https://en.wikipedia.org/wiki/Operating-system-level_virtualization) on Linux, Mac OS and Windows.
 
 <a name="what-is-laravel"></a>
 ### What is Laravel?
@@ -127,7 +129,7 @@ Seriously!!!
 
 Instead of providing a full Virtual Machines, like you get with Vagrant, Docker provides you **lightweight** Virtual Containers, that share the same kernel and allow to safely execute independent processes.
 
-In addition to the speed, Docker gives tens of features that cannot be achieved with Vagrant.
+In addition to the speed, Docker gives tons of features that cannot be achieved with Vagrant.
 
 Most importantly Docker can run on Development and on Production (same environment everywhere). While Vagrant is designed for Development only, (so you have to re-provision your server on Production every time).
 
@@ -139,26 +141,21 @@ LaraDock and [Homestead](https://laravel.com/docs/master/homestead) both gives y
 
 - Homestead is a tool that controls Vagrant for you (using Homestead special commands). And Vagrant manages your Virtual Machine.
 
-- LaraDock is a tool that controls Docker for you (using Docker Compose official commands). And Docker manages you Virtual Containers.
+- LaraDock is a tool that controls Docker for you (using Docker & Docker Compose official commands). And Docker manages your Virtual Containers.
 
-Running a virtual Container is much faster than running a full virtual Machine.
-<br>Thus **LaraDock is much faster than Homestead**.
+Running a virtual Container is much faster than running a full virtual Machine. Thus **LaraDock is much faster than Homestead**.
 
 
 
 <a name="Requirements"></a>
 ## Requirements
 
-| Linux                                                                                   | Windows & MAC                                           |
-|-----------------------------------------------------------------------------------------|---------------------------------------------------------|
-|                 [Laravel](https://laravel.com/docs/master/installation)                 | [Laravel](https://laravel.com/docs/master/installation) |
-|                           [Git](https://git-scm.com/downloads)                          |           [Git](https://git-scm.com/downloads)          |
-| [Docker Engine](https://docs.docker.com/engine/installation/linux/ubuntulinux) |     [Docker Toolbox](https://www.docker.com/toolbox)    |
-|                [Docker Compose](https://docs.docker.com/compose/install)                |                                                         |
-
-
-
-
+| Linux                                                                          | Windows & MAC                                                                                 |
+|--------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
+| [Laravel](https://laravel.com/docs/master/installation)                        | [Laravel](https://laravel.com/docs/master/installation)                                       |
+| [Git](https://git-scm.com/downloads)                                           | [Git](https://git-scm.com/downloads)                                                          |
+| [Docker Engine](https://docs.docker.com/engine/installation/linux/ubuntulinux) | [Docker Toolbox](https://www.docker.com/toolbox) OR [Native Docker](https://beta.docker.com/) |
+| [Docker Compose](https://docs.docker.com/compose/install)                      |                                                                                               |
 
 <a name="Demo"></a>
 ## Demo Video
@@ -259,6 +256,7 @@ If you need a special support. Contact me, more details in the [Help & Questions
 <a name="Documentation"></a>
 ## Documentation
 
+**Note:** this documentation doesn't cover the Docker Beta *(Native Docker on MAC and Windows)*. However, the commands are very similar. We are planning to cover the Docker Beta soon.
 
 
 <a name="Docker"></a>
@@ -823,29 +821,32 @@ server_name laravel.dev;
 
 
 <br>
+<a name="Install-Prestissimo"></a>
+### Install Prestissimo
+
+[Prestissimo](https://github.com/hirak/prestissimo) is a plugin for composer which enables parallel install functionality. You can enable Prestissimo by setting `INSTALL_PRESTISSIMO=true` in the `docker-compose.yml` file.
+
+<br>
 <a name="debugging"></a>
 ### Debugging
 
 *Here's a list of the common problems you might face, and the possible solutions.*
 
-#### + I see a blank (white) page instead of the Laravel 'Welcome' page!
+#### I see a blank (white) page instead of the Laravel 'Welcome' page!
 
-run this command from the Laravel root directory:
+Run the following command from the Laravel root directory:
 
 ```bash
 sudo chmod -R 777 storage bootstrap/cache
 ```
 
-#### + I see "Welcome to nginx" instead of the Laravel App!
+#### I see "Welcome to nginx" instead of the Laravel App!
 
-use `http://127.0.0.1` instead of `http://localhost` in your browser.
+Use `http://127.0.0.1` (or [your Docker IP](#Find-Docker-IP-Address)) instead of `http://localhost` in your browser.
 
+#### I see an error message containing `address already in use`
 
-
-
-
-
-
+Make sure the ports for the services that you are trying to run (80, 3306, etc.) are not being used already by other programs, such as a built in `apache`/`httpd` service or other development tools you have installed.
 
 
 <br>
@@ -872,6 +873,7 @@ Additionally, you can contact Mahmoud Zalt (the creator of this project) via a d
 
 **Main Contributors:**
 
+- [Jack Fletcher](https://github.com/Kauhat)
 - [Bo-Yi Wu](https://github.com/appleboy)
 - [Amin Mkh](https://github.com/AminMkh)
 - [Matthew Tonkin Dunn](https://github.com/mattythebatty)
